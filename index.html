@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+	<style>
+	    body { padding-top: 60px; }
+	</style>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+	<script language="javascript" src="bootstrap/js/parse.js"></script>
+	<title> NS2-based Robustness Tool  </title>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+        	<a class="brand" href="#">NS2OL</a>
+        	<div class="nav-collapse collapse">
+        	    <ul class="nav">
+        	        <li class="active"><a href="#">Home</a></li>
+        	    </ul>
+        	</div>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+	<div class="hero-unit">
+	    <form action="" class="input-holder" id="submit-files">
+	        <h4>Network properties</h4>
+	        <table class="table">
+	            <tr>
+	                <td>Weighted?</td>
+	                <td><label class="radio"><input type="radio" name="optionsRadiosOne" class="weighted" value="Yes">Yes</label></td>
+	                <td><label class="radio"><input type="radio" name="optionsRadiosOne" class="weighted" value="No">No</label></td>
+	            </tr>
+	            <tr>
+	                <td>Self-edges?</td>
+	                <td><label class="radio"><input type="radio" name="optionsRadiosTwo" class="self-edges" value="Yes">Yes</label></td>
+	                <td><label class="radio"><input type="radio" name="optionsRadiosTwo" class="self-edges" value="No">No</label></td>
+	            </tr>
+	            <tr>
+	                <td>Redundant edges?</td>
+	                <td><label class="radio"><input type="radio" name="optionsRadiosThree" class="redundant-edges" value="Yes">Yes</label></td>
+	                <td><label class="radio"><input type="radio" name="optionsRadiosThree" class="redundant-edges" value="No">No</label></td>
+	            </tr>
+	            <tr>
+	                <td>Delimiter</td>
+	                <td><label class="radio"><input type="radio" class="delim" value="Space">Space</label></td>
+	                <td><label class="radio"><input type="radio" class="delim" value="Tab">Tab</label></td>
+	            </tr>
+	        </table>
+	        <h4>Simulation parameters</h4>
+            <table class="table">
+                <tr>
+                    <td>Queue-limit</td>
+                    <td><label class="radio"><input type="radio" class="ql" value="1">1</label></td>
+                    <td><label class="radio"><input type="radio" class="ql" value="2">2</label></td>
+                    <td><label class="radio"><input type="radio" class="ql" value="3">3</label></td>
+                    <td><label class="radio"><input type="radio" class="ql" value="4">4</label></td>
+                    <td><label class="radio"><input type="radio" class="ql" value="0">NA</label></td>
+                </tr>
+                <!--tr>
+                    <td>Packet size</td>
+                    <td><label class="text"><input type="text"> bytes</label></td>
+                </tr-->
+                <tr>
+                    <td>Edge direction?</td>
+                    <td><label class="radio"><input type="radio" class="link" value="1">Uni-directional</label></td>
+                    <td><label class="radio"><input type="radio" class="link" value="2">Bi-directional</label></td>
+                </tr>
+                <tr>
+                    <td>Loss</td>
+                    <td><label class="checkbox"><input type="checkbox" class="loss-perc" value="1">1%</label></td>
+                    <td><label class="checkbox"><input type="checkbox" class="loss-perc" value="2">2%</label></td>
+                    <td><label class="checkbox"><input type="checkbox" class="loss-perc" value="10">10%</label></td>
+                    <td><label class="checkbox"><input type="checkbox" class="loss-perc" value="20">20%</label></td>
+                    <td><label class="checkbox"><input type="checkbox" class="loss-perc" value="0">No loss</label></td>
+                </tr>
+                <tr>
+                    <td>Sink node</td>
+                    <td><label class="checkbox"><input type="checkbox" class="sink-node" value="1">Highest degree</label></td>
+                    <td><label class="checkbox"><input type="checkbox" class="sink-node" value="2">Motif-based</label></td>
+                    <td><label class="checkbox"><input type="checkbox" class="sink-node" value="3">Random</label></td>
+                </tr>
+                <tr>
+                    <td>Routing protocol</td>
+                    <td><label class="radio"><input type="radio" class="routing" value="1" disabled>Flooding</td>
+                    <td><label class="radio"><input type="radio" class="routing" value="2" disabled>Shortest-path</td>
+                </tr>
+                <tr>
+                    <td>Upload network</td>
+                    <td><input type="file"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" class="btn btn-primary btn-large" value="Submit"> <input class="btn btn-large" type="reset" value="Clear"></td>
+                </tr>
+            </table>
+	    </form>
+	    <a href="#myModal" role="button" class="btn btn-link" data-toggle="modal">Help</a> 
+    </div>
+
+    By <a href="https://twitter.com/bkamapantula">@bkamapantula</a>
+     
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">Help</h3>
+      </div>
+      <div class="modal-body">
+        <div class="whichever">
+            <h3>Network format</h3>
+            Network must be represented in edge-list format<br/><br/>
+            1 3<br/>
+            2 3<br/>
+            3 5<br/>
+            <hr>
+            <h4>Weighted</h4>
+            If edges are weighted, select Yes.
+            <h4>Self edges</h4>
+            If network contains self-edges (edge from node A to node A), select Yes.
+            <h4>Redundant edges</h4>
+            If network contains redundant-edges (edge from node A to node A), select Yes.
+            <h4>Queue limit</h4>
+            NS2 supports Queue Limit restriction. Choose accordingly.
+            <h4>Edge Direction</h4>
+            If edges are uni-directional, select Uni-directional.
+            <h4>Loss</h4>
+            If network contains self-edges (edge from node A to node A), select Yes.
+        </div>
+        <!--p>
+            <h4>Twitter Bootstrap</h4>
+            This site is powered by <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>!<br/>
+        </p-->
+      </div>
+      <!--div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Save changes</button>
+      </div-->
+    </div>
+
+    </div> <!--end of container-->
+</body>
